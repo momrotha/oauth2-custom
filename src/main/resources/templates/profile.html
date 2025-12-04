@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - OAuth2 Server</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-container {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 30px;
+      font-size: 24px;
+    }
+
+    .profile-details {
+      margin-bottom: 20px;
+    }
+
+    .profile-details label {
+      font-weight: 500;
+      color: #555;
+    }
+
+    .profile-details p {
+      color: #333;
+      font-size: 16px;
+    }
+
+    .logout-button {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .logout-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+
+    .logout-button:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+<div class="profile-container">
+  <h2>User Profile</h2>
+
+  <div class="profile-details">
+    <label>Username:</label>
+    <p th:text="${username}">Username</p>
+  </div>
+
+  <div class="profile-details">
+    <label>Email:</label>
+    <p th:text="${email}">Email</p>
+  </div>
+
+  <!-- Add more profile details here -->
+
+  <form action="/logout" method="POST">
+    <button type="submit" class="logout-button">Logout</button>
+  </form>
+</div>
+</body>
+</html>
