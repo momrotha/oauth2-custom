@@ -71,13 +71,6 @@ public class SecurityConfig {
 
 
 
-
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     // JWK source used to sign JWT access tokens
     @Bean
     public JWKSource<SecurityContext> jwkSource() throws Exception {

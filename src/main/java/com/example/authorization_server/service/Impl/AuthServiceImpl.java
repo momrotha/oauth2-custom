@@ -7,6 +7,7 @@ import com.example.authorization_server.repository.UserRepository;
 import com.example.authorization_server.service.AuthService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -39,14 +40,16 @@ public class AuthServiceImpl implements AuthService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity user = userRepository.findByUsername(username)
+        com.example.authorization_server.domain.User userEntity = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 
-
-        // Build and return Spring Security User
+        // Map UserEntity to UserDetails (Spring Security's User)
         return User.builder()
-                .username(user.getUsername())
-                .password(user.getPassword())
+                .username(userEntity.getUsername())
+                .password(userEntity.getPassword())
+                .authorities(userEntity.getRoles().stream()
+                        .map(role -> new SimpleGrantedAuthority(role.getName()))  // Assuming Role has a 'name' field
+                        .collect(Collectors.toList()))
                 .build();
     }
 }

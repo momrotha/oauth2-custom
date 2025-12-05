@@ -23,6 +23,7 @@ public class UserEntity {
     private String role = "USER";
 
     public Arrays getRoles() {
+        return null;
     }
 }
 

@@ -15,16 +15,17 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class User extends UserEntity implements UserDetails {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
 
     @Column(unique = true, nullable = false, updatable = false)
     private String uuid;
@@ -181,22 +182,88 @@ public class User extends UserEntity implements UserDetails {
     public static class UserBuilder {
         private final User user = new User();
 
-        public UserBuilder uuid(String uuid) { user.uuid = uuid; return this; }
-        public UserBuilder username(String username) { user.username = username; return this; }
-        public UserBuilder password(String password) { user.password = password; return this; }
-        public UserBuilder email(String email) { user.email = email; return this; }
-        public UserBuilder emailVerified(boolean verified) { user.emailVerified = verified; return this; }
-        public UserBuilder firstName(String firstName) { user.firstName = firstName; return this; }
-        public UserBuilder lastName(String lastName) { user.lastName = lastName; return this; }
-        public UserBuilder phoneNumber(String phoneNumber) { user.phoneNumber = phoneNumber; return this; }
-        public UserBuilder gender(String gender) { user.gender = gender; return this; }
-        public UserBuilder dob(LocalDate dob) { user.dob = dob; return this; }
-        public UserBuilder profilePictureUrl(String url) { user.profilePictureUrl = url; return this; }
-        public UserBuilder coverImageUrl(String url) { user.coverImageUrl = url; return this; }
-        public UserBuilder provider(String provider) { user.provider = provider; return this; }
-        public UserBuilder providerId(String providerId) { user.providerId = providerId; return this; }
-        public UserBuilder roles(List<Role> roles) { user.roles = roles; return this; }
-        public UserBuilder enabled(boolean enabled) { user.enabled = enabled; return this; }
-        public User build() { return user; }
+        public UserBuilder uuid(String uuid) {
+            user.uuid = uuid;
+            return this;
+        }
+
+        public UserBuilder username(String username) {
+            user.username = username;
+            return this;
+        }
+
+        public UserBuilder password(String password) {
+            user.password = password;
+            return this;
+        }
+
+        public UserBuilder email(String email) {
+            user.email = email;
+            return this;
+        }
+
+        public UserBuilder emailVerified(boolean verified) {
+            user.emailVerified = verified;
+            return this;
+        }
+
+        public UserBuilder firstName(String firstName) {
+            user.firstName = firstName;
+            return this;
+        }
+
+        public UserBuilder lastName(String lastName) {
+            user.lastName = lastName;
+            return this;
+        }
+
+        public UserBuilder phoneNumber(String phoneNumber) {
+            user.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        public UserBuilder gender(String gender) {
+            user.gender = gender;
+            return this;
+        }
+
+        public UserBuilder dob(LocalDate dob) {
+            user.dob = dob;
+            return this;
+        }
+
+        public UserBuilder profilePictureUrl(String url) {
+            user.profilePictureUrl = url;
+            return this;
+        }
+
+        public UserBuilder coverImageUrl(String url) {
+            user.coverImageUrl = url;
+            return this;
+        }
+
+        public UserBuilder provider(String provider) {
+            user.provider = provider;
+            return this;
+        }
+
+        public UserBuilder providerId(String providerId) {
+            user.providerId = providerId;
+            return this;
+        }
+
+        public UserBuilder roles(List<Role> roles) {
+            user.roles = roles;
+            return this;
+        }
+
+        public UserBuilder enabled(boolean enabled) {
+            user.enabled = enabled;
+            return this;
+        }
+
+        public User build() {
+            return user;
+        }
     }
 }
